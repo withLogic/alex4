@@ -1,0 +1,7 @@
+So, this is a single little map thrown out to get some criticism before I do any kind of level set. Don't expect too much: I've never been good at this level-design malarkey. Although, even if I say so myself, my levels for Jetpack were utterly wonderful. Also, damn stupid.
+
+Oh, and it is possible to get all the items. Difficult, perhaps, I really wouldn't be a good judge of that. Definitely possible.
+
+#start#
+mark1.map
+#end#

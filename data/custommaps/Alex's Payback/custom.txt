@@ -1,0 +1,34 @@
+Just a map pack for this great game "Alex's Payback". Enjoy playing it, if you can ;)) 
+-------------------------------------------------------------------------------------------
+DIFFICULTY: EASY/MEDIUM
+-------------------------------------------------------------------------------------------
+STORY: The humans have attacked the village when Alex was exploring Mistery Jungle. 
+When Alex comes back to the village, he sees that his friends were kiddnaped by humans. Alex 
+must now rescue his friends and kick some human ASS. Good Luck!
+-------------------------------------------------------------------------------------------
+SPECIAL TIPS: Sometimes don't eat your enemies. Sometimes you will learn from your 
+              mistakes. Sometimes you must kill only one boss to pass a level.
+-------------------------------------------------------------------------------------------
+Greetings to Peitz & Jan Snabl:))
+FLD rocks!!
+ 
+For more Alex 4 maps & other FLD stuff visit www.freelunchdesign.com
+
+-------------------------------------------------------------------------------------------
+Your comment's @ : masterofdisaster@net.hr
+-------------------------------------------------------------------------------------------
+
+#start#
+Level01.map
+Level02.map
+Level03.map
+Level04.map
+Level05.map
+Level06.map
+Level07.map
+Level08.map
+Level09.map
+Level10.map
+Level11.map
+Level12.map
+#end#

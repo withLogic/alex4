@@ -1,0 +1,22 @@
+"Going_back_home" mapset for Alex 4.
+Have fun!
+
+Dificulty:MEDIUM
+Every level is POSSIBLE. My favourite levels are: On the iceberg, On the iceberg 2 and Alex's hometown. In the 11th level you need an egg to destroy grunt - and that's all. But where is the egg?
+
+#start#
+1.map
+2.map
+3.map
+4.map
+5.map
+6.map
+7.map
+8.map
+9.map
+10.map
+11.map
+12.map
+#end#
+
+Alex is coming back to his family. Try to help him.

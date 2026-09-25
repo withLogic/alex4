@@ -1,0 +1,24 @@
+Drag this file onto alex4.exe to play the maps!
+
+The actual map files go between #start# and #end#. 
+They will be played in order. Just drop this textfile 
+on the game's icon and the maps will be loaded.
+
+Please refer to the manual for more information.
+
+#start#
+Bub.map
+cord.map
+hager.map
+girder.map
+rooks.map
+stale.map
+pop.map
+new.map
+rog.map
+wasser.map
+BB.map
+#end#
+
+Have fun!
+

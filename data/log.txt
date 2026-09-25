@@ -1,0 +1,1501 @@
+Alex 4 (v1.1) - log file
+-------------------
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+  *** failed
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+  *** failed
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+  *** failed
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+  *** failed to parse embedded MOD
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <0>
+ getting map 0 from map-datafile
+ level complete
+ saving options
+ starting level <1>
+ getting map 1 from map-datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ quit selected
+
+Exit routines:
+ unloading datafile
+ unloading original maps
+ destroying temporary map
+ freeing level names
+ saving options
+Error saving alex4.sav
+ saving highscores
+Error saving alex4.hi
+ unloading sound data
+ exiting dumb
+ exiting allegro
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (640x480 win)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+  *** failed
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (640x480 win)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+  *** failed
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (640x480 win)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  NO_SOUND selected
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <0>
+ getting map 0 from map-datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (640x480 win)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  NO_SOUND selected
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <0>
+ getting map 0 from map-datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <0>
+ getting map 0 from map-datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ edit selected
+
+Entering editor:
+ creating empty map
+  edit path set to: <new.map>
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <custommaps>
+ found 0 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <custommaps>
+ found 0 custom map packs
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map selection cancelled
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ player quit
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ player died
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ level complete
+ saving options
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/two.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/two.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/two.map>
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ player died
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ asset set: original B&W
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data: ux0:/data/alex4/data/data.dat
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ asset set change requested: color
+ reinitializing runtime for asset-set change
+
+Exit routines:
+ saving options
+ saving highscores
+ destroying temporary map
+ freeing level names
+ unloading sound data
+ unloading original maps
+ unloading datafile
+ exiting dumb
+ exiting allegro
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ asset set: color
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data: ux0:/data/alex4/data/data_color.dat
+ loading options
+ loading hiscores
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ asset set: color
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data: ux0:/data/alex4/data/data_color.dat
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ loading replacement data: ux0:/data/alex4/data/data.dat
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ live asset switch complete: original B&W
+
+Running main menu:
+ asset set change requested: color
+ switching live asset set
+ asset set: color
+ live asset switch complete: color
+
+Running main menu:
+ custom maps menu selected
+
+Entering custom maps:
+
+Running custom maps menu:
+ scanning <ux0:data/alex4/custommaps>
+  map pack found: <Allegator Adventure>
+ found 1 custom map packs
+ custom map pack selected: <Allegator Adventure>
+ custom map list: <ux0:data/alex4/custommaps/Allegator Adventure/custom.txt>
+ loading custom maps
+  reading map file: ux0:data/alex4/custommaps/Allegator Adventure/custom.txt
+  <one.map> found
+  <two.map> found
+  <three.map> found
+  <four.map> found
+  <five.map> found
+  <six.map> found
+  <seven.map> found
+  <eight.map> found
+  <nine.map> found
+  <ten.map> found
+  <eleven.map> found
+  11 maps loaded
+
+Running main menu:
+ play selected
+
+Starting new game:
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ player died
+ starting level <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+  edit path set to: <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+ loading map <ux0:data/alex4/custommaps/Allegator Adventure/one.map>
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ asset set: color
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data: ux0:/data/alex4/data/data_color.dat
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile
+
+Running main menu:
+ asset set change requested: original B&W
+ switching live asset set
+ asset set: original B&W
+ loading replacement data: ux0:/data/alex4/data/data.dat
+ live asset switch complete: original B&W
+
+Running main menu:
+ quit selected
+
+Exit routines:
+ saving options
+ saving highscores
+ destroying temporary map
+ freeing level names
+ unloading sound data
+ unloading original maps
+ unloading datafiles
+ exiting dumb
+ exiting allegro
+Game started with the following commands:
+   
+Working directory is:
+   app0:/
+
+Init routines:
+ initializing allegro
+ asset set: original B&W
+ installing timers
+ setting color depth (16)
+ allocating memory for off screen buffers
+ allocating memory for high score table 1
+ allocating memory for high score table 2
+ entering gfx mode set in alex4.ini (320x240 full)
+  * display switch mode failed
+  * display switch in failed
+  * display switch out failed
+ setting window title
+ registering dumb
+ loading data: ux0:/data/alex4/data/data.dat
+ loading options
+  *** failed, resetting to defaults
+ loading hiscores
+  *** failed, resetting
+ loading original maps
+ loaded 12 maps
+ installing keyboard
+ installing mouse
+ initializing controls
+ initializing joystick/gamepad
+ installing sound
+  DIGI_AUTODETECT selected (-1)
+ loading sound datafile
+  sfx_44.dat not found
+  sfx_22.dat will be used
+ initializing scroller
+ vsync set to OFF
+ init OK!
+ getting map 0 from datafile

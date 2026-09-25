@@ -1,0 +1,20 @@
+This is my first level pack for Alex4 which I entitled "Eco Mission". It contains 10 levels which guide you through the perilous journey to the final boss level: The ACME Crude Oil Refinery (TACOR) HQ. The evil owner of TACOR, Dr. Badguy, has built an oil plant which is going to infest the Allegators' habitat. You must eventually kill him to prevent the complete annihilation of the Allegator species.
+
+This level pack has quite a few secrets, however some are not as secret as they seem. My advice is: don't try to get all the bonuses, because you can't! It's impossible.
+
+Beating this level pack might prove to be rather tricky, so if you haven't yet completed the Alex4 campaign, you should do so first. If you complete all the levels in this pack, you deserve a good pat on the back! By the way; in the last level you will recognize Dr. Badguy disguised as a normal Grunt...he is a master of disguise :P.
+
+- Tom Hebel (blendermax)
+
+#start#
+thebeginning.map
+overthesea.map
+throughtheland.map
+overthesea2.map
+treasureisle.map
+thedepths.map
+totheoilshaft.map
+theoilshaft.map
+therefinery.map
+tacorhq.map
+#end#

@@ -1,0 +1,18 @@
+"Marvin's" mapset for Alex 4.
+Have fun!
+
+#start#
+marvin1.map
+marvin2.map
+marvin3.map
+marvin4.map
+marvin5.map
+marvin6.map
+marvin7.map
+marvin8.map
+marvin9.map
+marvin10.map
+marvin11.map
+marvin12.map
+marvin13.map
+#end#

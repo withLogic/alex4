@@ -72,14 +72,14 @@ void draw_speak_bulb(BITMAP *bmp, DATAFILE *d, int src_x, int src_y, int up, int
 	ya = (up ? y1 - 10: src_y - 10);
 
 	// draw the bulb
-	rectfill(bmp, x1, y1 + 4, x2, y2 - 4, 4);
-	rectfill(bmp, x1 + 4, y1, x2 - 4, y2, 4);
-	line(bmp, x1, y1 + 4, x1, y2 - 4, 1);
-	line(bmp, x1 + 4, y1, x2 - 4, y1, 1);
-	line(bmp, x2, y1 + 4, x2, y2 - 4, 1);
-	line(bmp, x1 + 4, y2, x2 - 4, y2, 1);
-	line(bmp, x2+1, y1 + 4, x2+1, y2 - 4, 1);
-	line(bmp, x1 + 4, y2+1, x2 - 4, y2+1, 1);
+	rectfill(bmp, x1, y1 + 4, x2, y2 - 4, color_text_white);
+	rectfill(bmp, x1 + 4, y1, x2 - 4, y2, color_text_white);
+	line(bmp, x1, y1 + 4, x1, y2 - 4, color_text_black);
+	line(bmp, x1 + 4, y1, x2 - 4, y1, color_text_black);
+	line(bmp, x2, y1 + 4, x2, y2 - 4, color_text_black);
+	line(bmp, x1 + 4, y2, x2 - 4, y2, color_text_black);
+	line(bmp, x2+1, y1 + 4, x2+1, y2 - 4, color_text_black);
+	line(bmp, x1 + 4, y2+1, x2 - 4, y2+1, color_text_black);
 	draw_sprite(bmp, d[BULB_TL].dat, x1, y1);
 	draw_sprite(bmp, d[BULB_BL].dat, x1, y2 - 5);
 	draw_sprite(bmp, d[BULB_TR].dat, x2 - 5, y1);
@@ -89,7 +89,7 @@ void draw_speak_bulb(BITMAP *bmp, DATAFILE *d, int src_x, int src_y, int up, int
 
 	// draw text
 	for(i = 0; i < lines; i ++) {
-		textout(bmp, d[THE_FONT].dat, rows[i], x1 + 4, y1 + 5 + i * 9, 1);
+		textout(bmp, d[THE_FONT].dat, rows[i], x1 + 4, y1 + 5 + i * 9, color_text_black);
 	}
 }
 
@@ -291,7 +291,7 @@ void cmd_showbmp(char *name) {
 		blit(data[INTRO_BG].dat, swap_buffer, 0, 0, 0, 0, 160, 120);
 	}
 	else if (!stricmp(name, "darkness")) {
-		clear_to_color(swap_buffer, 2);
+		clear_to_color(swap_buffer, color_scroller_bg);
 	}
 }
 

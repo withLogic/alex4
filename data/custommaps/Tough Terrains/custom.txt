@@ -1,0 +1,24 @@
+These maps were made by the Siddiqui brothers[Zoheb(zubzi)and sufyan)]
+
+These maps are better than the first set of maps and are called "Tough Terrains"
+
+The main aim of these levels are to complete it and get 100% stars and cherries and secrets!
+
+Any feedback, good or bad, are invited in the forum thread "Zubzi Suf Maps"
+
+I hope you feedback on my levels again Bob XP(BTW:there are lots less eggs and 1ups)
+
+PS: All breakbable blocks can be broken, all levels can be completed and all secrets accessed! Try It harder if you cannot get it!
+
+
+
+Thank You
+
+#start#
+azubi1.map
+sufyan.map
+break.map
+suf1.map
+suf2.map
+suf3.map
+#end#

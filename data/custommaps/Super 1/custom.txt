@@ -1,0 +1,6 @@
+Hi there!
+Here is my first map i realse for Alex 4. Hope you like it!
+
+#start#
+Super1.map
+#end#

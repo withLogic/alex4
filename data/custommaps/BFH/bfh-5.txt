@@ -1,0 +1,16 @@
+Welcome to the 5th and probably final installment of Alex's adventures in the BFH world. As usual we begin where the last series ended. Having made their way to the summer holiday camp, things have been going great until Alex awakes one morning to find Lola has disapeared yet again.  Where could she be? Looks like Alex will have to leave the safety of their summer camp if he expects to find Lola once again.  What has been happening in the world of Acme since Alex last ventured out into their domain? More of the same with a few new twists added. I'm running out of ideas so this is more than likely the last time you'll have to rescue poor old Lola. good luck!
+
+As usual there are free lives available in the more difficult levels along with the ACME sign in levels where you must defeat all other creatures before being able to exit, and don't forget about The arrows, they can be life savers you know.
+
+PS: If you enjoyed playing these levels, feel free to drop me an email at harbuckleshere@yahoo.com.au  -   Who knows, it might inspire me to send Alex on yet another adventure or three. 
+
+PS: Have you been mapping out each series? They are all connected and its poosible to find out exactly how big Alex's world is. You just need a big big piece of paper. 
+ 
+#start#
+bfh5-1.map
+bfh5-2.map
+bfh5-3.map
+bfh5-4.map
+bfh5-5.map
+bfh5-6.map
+#end#

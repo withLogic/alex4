@@ -1,0 +1,35 @@
+Pack of Maps "Lola's Son". Enjoy playing it,if you can ;)) 
+-------------------------------------------------------------------------------------------
+DIFFICULTY: MEDIUM
+-------------------------------------------------------------------------------------------
+STORY: THIS is a real story of Alex the Allegator. Humans have kidnapped Lola. Alex saw
+       that but his memory was erased by humans. And the story began. When Alex meets Bad
+       Allegators his memory will return.He will remember that he must save Lola.Good Luck!
+-------------------------------------------------------------------------------------------
+SPECIAL TIPS: Sometimes you spit eggs only when you must. Sometimes don't be greedy.
+              Sometimes you will learn on your mistakes. Sometimes believe in the unbeliveable.
+-------------------------------------------------------------------------------------------
+
+Greetings to Preno & John Beak :))
+FLD rocks!!
+ 
+For more Alex 4 maps & other FLD stuff visit www.freelunchdesign.com
+
+-------------------------------------------------------------------------------------------
+Your comment's @ : masterofdisaster@net.hr
+-------------------------------------------------------------------------------------------
+
+#start#
+Level01.map
+Level02.map
+Level03.map
+Level04.map
+Level05.map
+Level06.map
+Level07.map
+Level08.map
+Level09.map
+Level10.map
+Level11.map
+Theend.map
+#end#

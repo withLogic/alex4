@@ -1,0 +1,10 @@
+"Going_back_home" mapset for Alex 4.
+Have fun!
+
+Dificulty:MEDIUM
+
+#start#
+12.map
+#end#
+
+Alex is coming back to his family. Try to help him.

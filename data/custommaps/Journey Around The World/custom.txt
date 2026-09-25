@@ -1,0 +1,10 @@
+OK, finally I finished this map set.  The difficulty is not anything to do with where the level is in the set order.  In these levels, you guide Alex around and through the earth, save Lola and then fight off the enemies when you get home.  I only have to say that the first level was graphically edited by spoing.  I don't care how much you give this out, but only do so if you do not change any content of the ZIP file and do not claim these as your own.
+
+
+#start#
+WaterTreatmentPlant.map
+TheCave.map
+Centeroftheearth.map
+Savinglola.map
+Homeinvaded.map
+#end#

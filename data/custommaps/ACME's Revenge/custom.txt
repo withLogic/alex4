@@ -1,0 +1,33 @@
+LEVELS: 5 (+ 1 bonus)
+DIFFICULTY: EASY
+
+----------------------------------------------------------------------------------------
+THE STORY SO FAR:
+After you rescue Lola. Your son is born. As soon as Lola lays the egg, the ACME Inc. had their hands at that moment and thus...your son is stolen. He costs fortune because he's Alex's son and the workers at ACME Inc. know that Alex isn't an ordinary Allegator. The search begins...
+
+----------------------------------------------------------------------------------------
+
+Thank you for downloading my map pack!
+
+If you have any comments or you would like to see more maps from me then please send me an email to encourage me ;).
+
+luksy@email.com
+
+Also, please visit my site for my non Alex 4 related stuff.
+
+www.luksy.tk
+
+To play this map pack, drag this txt onto the alex4 executable file or the executable's shortcut. Enjoy!
+
+----------------------------------------------------------------------------------------
+
+DO NOT DELETE OR EDIT THE FOLLOWING:
+
+#start#
+map1.map
+map2.map
+map3.map
+map4.map
+map5.map
+bonus.map
+#end#

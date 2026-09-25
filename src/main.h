@@ -87,6 +87,14 @@ BITMAP *get_letsgo_sign();
 Thisc *get_space_hisc();
 void show_scores(int space, Thisc *table);
 void synchronize_us();
+int using_color_assets(void);
+const char *get_shooter_datafile_path(void);
+
+extern int color_text_black;
+extern int color_text_white;
+extern int color_scroller_text;
+extern int color_scroller_bg;
+extern PALETTE org_pal;
 
 // a little bounding box quickie
 #define check_bb_collision(x1,y1,w1,h1,x2,y2,w2,h2) (!( ((x1)>=(x2)+(w2)) || ((x2)>=(x1)+(w1)) || \

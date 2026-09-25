@@ -1,0 +1,15 @@
+Alex 4 map set:
+Infiltrate and Destroy
+----------------------
+This is Part I of II in the "Infiltrate and Destroy" series. It contains four levels, my first ones released to the public. They are bound to be terrible, but what can I say. It is fine to distribute the maps unmodified, or modify them to your likings and return them to me if you want to give me advice. Thanks. -Zakk
+
+=====================================
+
+#start#
+infiltrate-destroy/simplestart.map
+infiltrate-destroy/rollin.map
+infiltrate-destroy/seasick.map
+infiltrate-destroy/thesave.map
+#end#
+
+

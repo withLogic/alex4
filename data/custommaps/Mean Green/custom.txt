@@ -1,0 +1,16 @@
+Alex has been caught by the humans! In the first level you escape from the Dungeon where they kept you, but Alex still has far to go! Guide Alex as he travels through the dangerous human world, and get back home!
+
+To play, simply drag and drop this very text doc. onto the MEANGREEN player shortcut. If it doesn’t work, try installing Alex the Alligator 4, at www.freelunchdesign.com
+
+#start#
+Green01.map
+Green02.map
+Green03.map
+Green04.map
+Green05.map
+Green06.map
+Green07.map
+Green08.map
+Green09.map
+Green10.map
+#end#

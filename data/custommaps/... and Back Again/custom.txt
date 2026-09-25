@@ -1,0 +1,28 @@
+...and Back Again
+=================
+
+Author: Preno (Adam Prenosil)
+Contact: iprenosil@volny.cz
+Homepage: http://alex4.webz.cz
+Release date: December 13, 2003
+Version: 1.00
+
+(to play, drag this file onto alex4.exe)
+
+Description:
+
+Hello, this pack is a sequel to my first one (called Journey to the Pole). It contains 7 levels (well, if you count the last one as a real level...). The story (or "story" in fact) starts where the Journey to the Pole finished. Thinking he destroyed the evil Mr. Pounder, who wanted to turn Antarctis into a huge allegator concentration camp (while in fact he killed his also-evil twin, Mr. Bush), Alex made his escape through the tunnels under the installation in hope to find a boat to get away.
+Suddenly the tunnel ends and you can feel fresh air blowing on your face again. It's time to get out of this place!
+
+When I started making this pack, my goal was to creating something that would be easier as my first one, because people complained it was too hard. So I hope you won't find this one too easy... :)
+
+
+#start#
+dungeons.map
+glass.map
+intermezzo.map
+levelup.map
+arcade.map
+run.map
+goodbye.map
+#end#

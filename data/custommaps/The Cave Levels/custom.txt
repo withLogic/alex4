@@ -1,0 +1,8 @@
+#start#
+WATER_CAVE.map
+EVIL_CAVE.map
+c.MAP
+GO_BACKTO_SAFETY.map
+another_one.MAP
+invisabile.MAP
+#end#

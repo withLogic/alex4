@@ -1,0 +1,44 @@
+ --=[ Title ]=------------------------------------------------------------
+Fungal Jungle
+pushplay (Jeffery Grajkowski) (pushplay@shaw.ca)
+	(http://www.cursesandepithets.com/)
+
+ --=[ Stats ]=------------------------------------------------------------
+files: fungal_jungle.txt, fungal01.map, fungal02.map, fungal03.map,
+	fungal04.map, fungal05.map, fungal06.map, fungal07.map,
+	fungal08.map, fungal09.map, fungal10.map, fungal11.map,
+	fungal12.map
+released: August 18, 2003
+game: Alex 4 (http://www.freelunchdesign.com/alex4.shtml)
+
+ --=[ Installation ]=-----------------------------------------------------
+Extract to the Alex 4 folder, and drag this very text file on to the
+program icon to play.
+
+ --=[ The Speech ]=-------------------------------------------------------
+It's 12 maps, including a water level, an underground level, a rolling
+level, and two boss levels.  The difficulty should be about right
+if you've already beaten the original maps.
+
+ --=[ Permissions ]=------------------------------------------------------
+You're free to distribute this map as you wish as long as: you make no
+profit, and leave the files intact.  I reserve the right to ask you to
+remove files.  You're free to use the map as a base for your own work if
+you ask for permission first and give me credit.
+
+ --=[ EOF ]=--------------------------------------------------------------
+
+#start#
+fungal01.map
+fungal02.map
+fungal03.map
+fungal04.map
+fungal05.map
+fungal06.map
+fungal07.map
+fungal08.map
+fungal09.map
+fungal10.map
+fungal11.map
+fungal12.map
+#end#

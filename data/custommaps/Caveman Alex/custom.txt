@@ -1,0 +1,18 @@
+Welcome to Caveman Alex! In this set of 5 levels, Alex must journey to the cave, survive the treacherous trip, and defeat the enemy ground-pounder at the end by forcing it to plunge through the ice.
+
+Each of the 5 levels contains two cherries, two stars, and a 1up. The bonuses are cleverly hidden, and the cave have many secrets. If you can beat all the levels, you're good. If you can get all the cherries in each level, you're great. If you can get all the stars as well, you're awesome. But if you can get every 1up, too, you're AMAZING!!
+
+Enjoy!
+
+#start#
+journey.map
+entrance.map
+deepdark.map
+escape.map
+caveboss.map
+#end#
+
+P.S. Yes, is it possible to get all the bonuses in every level. It just takes some thinking and exploring. Good luck!
+
+--ChessWhiz
+bryant@gentlecreations.net

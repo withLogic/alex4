@@ -1,0 +1,14 @@
+Welcome to the 4th installment of Alex's adventures in the BFH world. As usual we begin where the last series ended. Having found Lola, they decide to take the long trek to their summer holiday home as Acme has stepped up work on their jungle re-deveolpment program. Lola has hidden away while you must find enough eggs to help you rid the level of the invaders. There's enough hidden in the level but you need to use them wisely if you expect to make it out alive. Once you get under way you'll find this trek may be the hardest and most dangerous of them all. Don't worry, there are things to help you along the way and the prize for getting thru is the lovely Lola. So what are you waiting for?
+
+As usual there are free lives available in the more difficult levels along with the ACME sign in levels where you must defeat all other creatures before being able to exit. The arrows, for goodness sake follow the arrows! Don't say you weren't warned.
+
+
+ 
+#start#
+bfh4-1.map
+bfh4-2.map
+bfh4-3.map
+bfh4-4.map
+bfh4-5.map
+bfh4-6.map
+#end#

@@ -27,6 +27,7 @@
 
 #include "allegro.h"
 #include "scroller.h"
+#include "main.h"
 
 
 // initiates a scroller
@@ -66,8 +67,8 @@ void draw_scroller(Tscroller *sc, BITMAP *bmp, int x, int y) {
 		if (sc->offset < -sc->length) return;
 		if (sc->offset > sc->width) return;
 		set_clip(bmp, x, y, x + sc->width, y + sc->height);
-		textout(bmp, sc->fnt, sc->text, x + sc->offset + 1, y + 1, 1);
-		textout(bmp, sc->fnt, sc->text, x + sc->offset, y, 3);
+		textout(bmp, sc->fnt, sc->text, x + sc->offset + 1, y + 1, color_text_black);
+		textout(bmp, sc->fnt, sc->text, x + sc->offset, y, color_scroller_text);
 		set_clip(bmp, 0, 0, bmp->w-1, bmp->h-1);
 	}
 	else {

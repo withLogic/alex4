@@ -1,0 +1,29 @@
+
+    Escape!
+================
+
+Author: Preno (Adam Prenosil)
+Contact: iprenosil@volny.cz
+Homepage: http://alex4.webz.cz
+Release date: March 4, 2004
+Version: 1.01
+
+(to play, drag this file onto alex4.exe or alex4c.exe if you have the colour edition)
+
+Description:
+
+After his last Antartctic adventure, Alex decides to take a holiday for a while. He falls asleep in his holiday house and when he wakes up, he finds himself kidnapped somewhere in the mountains. He can hear Lola's cry somewhere in the distance... time to escape and save her!
+Just a hint - the vegetation in the first level is poisonous, so beware of it...!
+
+This map set might prove quite challenging if you want to get all the stars and cherries, so it may be better to ignore them at first. I tried to make a set that wouldn't be all that difficult just to go through but that would prove challenging for the perfectionists among you. I added a few 1ups, too, so that it's not too frustrating. Anyway, if you really want them all, don't say I didn't warn you! :)
+
+P.S.: Play with the Colour Edition!
+
+
+#start#
+whereeaglesdare.map
+theydontbite.map
+theyshoot.map
+acrossthelake.map
+mrpounder.map
+#end#

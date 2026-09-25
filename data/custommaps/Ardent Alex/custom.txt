@@ -1,0 +1,32 @@
+---------Ardent Alex-----------------------------------------
+A 3 map set for Alex4, 11/07/03
+
+by Jonathan Whiting
+jonathan@thewhitings.freeserve.co.uk
+
+--INFO-------------------------------------------------------
+released: 11/07/03
+game: Alex4 (http://www.freelunchdesign.com/)
+creation time: on and off (mostly off) for about a week.
+
+--NOTES---------------------------------------------------
+1: These levels are NOT easy. They've been designed for people that are looking for another challenge having completed the main game.
+2: As at the time of release only I have playtested the levels there may well be unfair bits, bugs, etc. that I dont know about.
+3: My 'secrets' are generally based on the idea that the challenge should not be finding them, but reaching them safely. 
+4: I LOVE feedback, and im always glad of it, even when its pretty scathing (as long as theres a good reason).  Please do send any comments, suggestions, questions and requests to me at jonathan@thewhitings.freeserve.co.uk
+
+--THANKS-----
+Free Lunch Design (http://www.freelunchdesign.com/) for writing Alex 4 (among other things).
+Anyone who's commented on this or anyone thats going to :P
+umm and thats it...
+ 
+ -- Permissions/Copyright -------------------------------
+You're free to distribute these maps as you wish as long as: you make no profit, and leave the files intact.  You're free to use the map's as a base for your own work if you tell me about it and give me credit where due.  
+---------------------------------------------------------
+
+#start#
+afreshstart.map
+alexgo.map
+crochunter.map
+#end#
+

@@ -352,16 +352,21 @@ static void s_start_music(int startorder) {
 // draws any object at specified position
 void s_draw_object(BITMAP *bmp, Tspace_object *o) {
 	if (o->type != SO_EXPLOSION) {
-		if (!o->hit || o->type == SO_PLAYER_BULLET)
+		if (using_color_assets() && o->type == SO_PLAYER_BULLET)
+			draw_trans_sprite(bmp, s_data[o->image].dat, (int)o->x, (int)o->y);
+		else if (!o->hit || o->type == SO_PLAYER_BULLET)
 			draw_sprite(bmp, s_data[o->image].dat, (int)o->x, (int)o->y);
 		else
-			draw_character(bmp, s_data[o->image].dat, (int)o->x, (int)o->y, 4);
+			draw_character(bmp, s_data[o->image].dat, (int)o->x, (int)o->y, color_text_white);
 	}
 	else {
 		int c = (o->energy + 8) >> 3;
-		if (c > 1) circle(bmp, (int)o->x + 15, (int)o->y + 15, o->image + 9, c);
-		if (c > 2) circle(bmp, (int)o->x + 15, (int)o->y + 15, o->image + 8, c - 1);
-		if (c > 3) circle(bmp, (int)o->x + 15, (int)o->y + 15, o->image + 7, c - 2);
+		if (c > 1) circle(bmp, (int)o->x + 15, (int)o->y + 15, o->image + 9,
+			using_color_assets() ? c + 24 : c);
+		if (c > 2) circle(bmp, (int)o->x + 15, (int)o->y + 15, o->image + 8,
+			using_color_assets() ? c + 23 : c - 1);
+		if (c > 3) circle(bmp, (int)o->x + 15, (int)o->y + 15, o->image + 7,
+			using_color_assets() ? c + 22 : c - 2);
 		draw_trans_sprite(bmp, s_expl_frame[o->image], (int)o->x, (int)o->y);
 	}
 
@@ -393,8 +398,8 @@ void s_draw_status_bar(BITMAP *bmp, int x, int y) {
 		padding_str[i] = '0';
 	padding_str[i] = '\0';
 	strcat(padding_str, score_str);
-	textprintf_right(bmp, s_data[SPACE_FONT].dat, x + 160, y + 2, 3, "%s", padding_str);
-	if (s_var.score) textprintf_right(bmp, s_data[SPACE_FONT].dat, x + 160, y + 2, 4, "%s", score_str);
+	textprintf_right(bmp, s_data[SPACE_FONT].dat, x + 160, y + 2, color_scroller_text, "%s", padding_str);
+	if (s_var.score) textprintf_right(bmp, s_data[SPACE_FONT].dat, x + 160, y + 2, color_text_white, "%s", score_str);
 }
 
 
@@ -1111,7 +1116,7 @@ void s_activate_sign(int game_over, double vy) {
 
 // the player can enter his/hers name
 void s_get_player_name(char *name) {
-	clear_to_color(s_buffer, 1);
+	clear_to_color(s_buffer, color_text_black);
 	blit(s_data[BG1].dat, s_buffer, 0, 0, 0, 0, 160, 120);
 	textout_outline_center(s_buffer, "Congratulations,", 80, 8);
 	textout_outline_center(s_buffer, "You've got", 80, 19);
@@ -1119,7 +1124,7 @@ void s_get_player_name(char *name) {
 	textout_outline_center(s_buffer, "Enter your name:", 80, 55);
 	blit_to_screen(s_buffer);
 	fade_in_pal_black(100, s_dp);
-	get_string(s_buffer, name, 10, s_data[SPACE_FONT].dat, 50, 80, 4, s_var.ctrl);
+	get_string(s_buffer, name, 10, s_data[SPACE_FONT].dat, 50, 80, color_text_white, s_var.ctrl);
 }
 
 // runs the shooter
@@ -1368,13 +1373,44 @@ int s_generate_explosions() {
 		clear(s_expl_frame[i]);
 		for(y = 0; y < 32; y ++) {
 			for(x = 0; x < 32; x ++) {
-				c = MIN(_getpixel(tmp, x , y) >> 3, 4);
-				if (c > 1) _putpixel(s_expl_frame[i], x , y, c);
+					c = MIN(_getpixel(tmp, x , y) >> 3, 4);
+					if (using_color_assets()) {
+						if (c == 4) c = 43;
+						else if (c > 0) c += 25;
+					}
+					if (c > 1) _putpixel(s_expl_frame[i], x , y, c);
 			}
 		}
 	}
 
 	return 0;
+}
+
+static void return_additive_color(AL_CONST PALETTE pal, int x, int y, RGB *rgb) {
+	rgb->r = MIN(pal[x].r + pal[y].r, 63);
+	rgb->g = MIN(pal[x].g + pal[y].g, 63);
+	rgb->b = MIN(pal[x].b + pal[y].b, 63);
+}
+
+static void create_shooter_blend_map(void) {
+	int x, y;
+
+	log2file(" creating blend map");
+	if (using_color_assets()) {
+		create_color_table(&s_blend_map, org_pal, return_additive_color, NULL);
+		return;
+	}
+
+	for (x = 0; x < 5; x++) {
+		for (y = 0; y < 5; y++) {
+			if (x == 0)
+				s_blend_map.data[x][y] = y;
+			else if (y == 0)
+				s_blend_map.data[x][y] = x;
+			else
+				s_blend_map.data[x][y] = MIN(x + y - 1, 4);
+		}
+	}
 }
 
 // inits the shooter
@@ -1386,7 +1422,7 @@ int s_init_shooter() {
 	// load data
 	log2file(" loading shooter data");
 	packfile_password(get_init_string());
-	s_data = load_datafile("data/a45.dat");
+	s_data = load_datafile(get_shooter_datafile_path());
 	if (!s_data) {
 		log2file(" *** failed");
 		return -1;
@@ -1442,37 +1478,7 @@ int s_init_shooter() {
 	s_var.guardian_active = 0;
 	s_var.difficulty = 1;
 
-	// create blend map
-	log2file(" creating blend map");
-	s_blend_map.data[0][0] = 0;
-	s_blend_map.data[0][1] = 1;
-	s_blend_map.data[0][2] = 2;
-	s_blend_map.data[0][3] = 3;
-	s_blend_map.data[0][4] = 4;
-	
-	s_blend_map.data[1][0] = 1;
-	s_blend_map.data[1][1] = 1;
-	s_blend_map.data[1][2] = 2;
-	s_blend_map.data[1][3] = 3;
-	s_blend_map.data[1][4] = 4;
-	
-	s_blend_map.data[2][0] = 2;
-	s_blend_map.data[2][1] = 2;
-	s_blend_map.data[2][2] = 3;
-	s_blend_map.data[2][3] = 4;
-	s_blend_map.data[2][4] = 4;
-	
-	s_blend_map.data[3][0] = 3;
-	s_blend_map.data[3][1] = 3;
-	s_blend_map.data[3][2] = 4;
-	s_blend_map.data[3][3] = 4;
-	s_blend_map.data[3][4] = 4;
-	
-	s_blend_map.data[4][0] = 4;
-	s_blend_map.data[4][1] = 4;
-	s_blend_map.data[4][2] = 4;
-	s_blend_map.data[4][3] = 4;
-	s_blend_map.data[4][4] = 4;
+	create_shooter_blend_map();
 
 
 	// lock onto music

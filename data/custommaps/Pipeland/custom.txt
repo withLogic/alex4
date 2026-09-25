@@ -1,0 +1,31 @@
+@@@@@ @ @@@@@ @@@@@ @     @@@@@ @   @ @@@@@       @   @        @@@     @@@@@
+@   @ @ @   @ @     @     @   @ @@  @  @  @       @   @          @     @   @
+@@@@@ @ @@@@@ @@@@@ @     @@@@@ @ @ @  @  @        @ @           @     @   @
+@     @ @     @     @     @   @ @  @@  @  @        @ @           @     @   @
+@     @ @     @@@@@ @@@@@ @   @ @   @ @@@@@         @   @      @@@@@ @ @@@@@
+  P   I   P     E     L     A     N     D        VERSION         1   .   0
+
+By Vijay Rathinasamy
+
+Alex decides to go into a pipe which turns out to be the entrance to Pipeland, the land where humans keep other animals so that they can make pipes out of them. Seeing this as cruel, Alex decides to save all the animals, including his girlfriend, Lola!
+
+This TXT-Rom will play the following maps in this order:
+
+#start#
+tona.map
+piplin.map
+bongo.map
+pake.map
+egg.map
+rotzen.map
+zap.map
+stun.map
+Cruz.map
+gobon.map
+piplout.map
+anot.map
+bond.map
+#end#
+
+
+N.B. Give yourself a bonus of 500 points each time you complete a map under 1.5 minutes. :)

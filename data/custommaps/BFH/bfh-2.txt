@@ -1,0 +1,20 @@
+In this second installment Alex has found and rescued Lola. After telling her about the ACME invasion and consequent flooding of their home they decide to head off to their secret hideaway instead. In typical style she takes a wrong turn and you are once again separated. Will you meet up again before you get to your secret paradise hideaway? Or has she decided to race you there instead? Can you get Alex there first?  Don't worry, you may catch glimpses of the elusive Lola along the way. 
+
+If you haven't read the intro in the BFH1 levels then I'll repeat what I mentioned there with regards to completeing each section. 
+For the most part each level is more difficult than the previous one. 
+In the really hard ones there is usually a 1up life to help you get thru it. 
+Arrows are your guideline. They can save your life when used in the right level.
+This game starts off where the last one finished and as with the first you can actually map each level if you want to find out how far the secret hideaway is from their original home.
+
+
+#start#
+bfh2-1.map
+bfh2-2.map
+bfh2-3.map
+bfh2-4.map
+bfh2-5.map
+bfh2-6.map
+bfh2-7.map
+bfh2-8.map
+bfh2-9.map
+#end#

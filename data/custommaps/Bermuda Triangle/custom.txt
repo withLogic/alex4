@@ -1,0 +1,4 @@
+#start#
+isle01.map
+isle02.map
+#end#

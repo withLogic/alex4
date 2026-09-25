@@ -1,0 +1,12 @@
+#start#
+ChapterC\Ca_Hidden_Base.MAP
+ChapterC\Cb_Hidden_Base.MAP
+ChapterC\Cc_Hidden_Base.MAP
+ChapterC\Cd_Hidden_Base.MAP
+ChapterC\Ce_Hidden_Base.MAP
+ChapterC\Cf_Hidden_Base_Exit.MAP
+ChapterC\Cg_Finally_Outside.MAP
+ChapterC\Ch_They're_Attacking_Home.MAP
+ChapterC\Ci_A_Shortcut_to_Home.MAP
+ChapterC\Cj_Kill_the_Invaders.MAP
+#end#

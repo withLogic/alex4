@@ -1,0 +1,24 @@
+
+    Saving Lola (Part 2 - Alex the Speleologist)
+====================================================
+
+Author: Preno (Adam Prenosil)
+Contact: iprenosil@volny.cz
+Homepage: http://alex4.webz.cz
+Release date: May 21, 2004
+Version: 1.00
+
+(to play, drag this file onto alex4.exe or alex4c.exe if you have the colour edition)
+
+Description:
+
+Alex must find his way through the caves to find Lola. However, that won't necessarily be as easy as it sounds...
+The difficulty of these 4 maps varies, I think 2 of them are rather hard and 2 are pretty easy. The aim is of course to collect all the stars and cherries, but if you find it too hard, don't worry. And of course, enjoy! :)
+
+
+#start#
+cave.map
+tl.map
+cavebase.map
+outside.map
+#end#

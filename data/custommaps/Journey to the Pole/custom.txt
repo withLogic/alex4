@@ -1,0 +1,20 @@
+Hi, this is version 1.2 of my first map pack for Alex called "Journey to the Pole", which contains my first 7 levels. I changed the more frustrating spots, tweaked the levels a bit and made them more easier. But most importantly, it is actually possible to FINISH "Roll to the pole" level now...
+
+The story is simple: our friend Alex just got the information that certain Mr. Pounder is creating a secret installation on the South Pole, where he plans to put the captured Allegators and force them to work for him. The construction is almost finished, so Alex has to hurry - quickly get to the docks, infiltrate a ship sailing to the Antarctis, get to the pole installation and finally (maybe) deal with the evil Mr. Pounder.
+
+There are no real secrets, you can see all the cherries and stars - but getting them might prove to be a problem! The objective is to collect all the bonuses rather than just finish the levels... and beware, this pack is pretty difficult, so don't say I didn't warn you! (If you manage to get all of them, you have my respect; also, since the levels are rather long, I give you the opportunity to start from the "Ice Field" level if and only if you feel it's too difficult)
+
+Adam Prenosil / Preno
+iprenosil@volny.cz
+
+P.S.: My favorite level is Loading & Unloading...
+
+#start#
+dock_madness2.map
+load_unload2.map
+hms_evil2.map
+ice_field2.map
+roll_pole2.map
+under_construction2.map
+gwbush2.map
+#end#

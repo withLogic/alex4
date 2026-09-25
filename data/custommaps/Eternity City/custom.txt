@@ -1,0 +1,21 @@
+Acme Inc. convinced the natives to do there
+dirty work in exchange for protection but never
+will do.But Alex will knock sence into the natives 
+and expose Acme Inc.'s true form.  
+
+#start#
+village.MAP
+downtown.MAP
+store.MAP
+underground.MAP
+bridge.MAP
+path.MAP
+temple.MAP
+camp.MAP
+boss.MAP
+#end#
+
+
+
+
+

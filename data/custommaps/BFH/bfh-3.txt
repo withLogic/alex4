@@ -1,0 +1,12 @@
+Welcome to the 3rd nstallment of Alex's adventures in the BFH world. As usual we begin where the last series ended. In this scenario Alex wakes one morning to discover that Lola has mysteriouly disapeared. Before he can go after her he must first find a way out of their paradise hideaway. Can you find the way out for him? More importantly can you discover where Lola has gone and re-unite Alex with Lola once again?
+
+As usual there are free lives available in the more difficult levels along with the ACME sign in levels where you must defeat all other creatures before being able to exit. Don't forget to follow the arrows!
+
+ 
+#start#
+bfh3-1.map
+bfh3-2.map
+bfh3-3.map
+bfh3-4.map
+bfh3-5.map
+#end#

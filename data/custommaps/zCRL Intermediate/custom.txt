@@ -1,0 +1,28 @@
+This map pack is recommended for Alex - Color Edition
+
+-----------------------------------------------------
+Hello and welcome to my first map pack :)
+
+This includes a few levels that are ment to just be fun
+
+Because this is the intermediate pack... this may be hard
+in a few parts but I made changes so it shouldn't to too hard..
+
+I would recommend this to the people who havn't tried my map pack
+
+But anyway...
+
+Have fun :P
+
+#start#
+Test_of_Quilification.map
+Test_of_Patience.map
+Test_of_Presision.map
+Test_of_Endurance.map
+Test_of_Resolve.map
+Test_of_Speed.map
+Test_of_Will_Power.map
+The_Cave.map
+#end#
+
+Enjoy!

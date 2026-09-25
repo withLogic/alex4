@@ -1,0 +1,21 @@
+Allegator Adventure
+The Alligator Village has been attacked by the humans, and they have taken away all the alligators and put them into a great prison in a faraway land. Only Alex, who was in the jungle during the time of the attack, can save his friends. First he must get to the village and free it from its evil conquerors. Then he must travel across many lands to reach the dungeon where his friends are kept.
+
+Have fun on this great adventure.
+
+Brought to you by Jonas Kyratzes, insane game designer.
+http://jonas.gamedeveloper.net
+
+#start#
+one.map
+two.map
+three.map
+four.map
+five.map
+six.map
+seven.map
+eight.map
+nine.map
+ten.map
+eleven.map
+#end#

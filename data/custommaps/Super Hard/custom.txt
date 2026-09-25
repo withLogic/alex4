@@ -1,0 +1,4 @@
+#start#
+Beggining.MAP
+Mainlevel.map
+#end#

@@ -1,0 +1,54 @@
+Romantic Island is an Alex Allegator 4 custom game designed by Richard Kalkman.
+The goals I had is to make a game with long but nice to play levels and with surprised elements in it.
+So the total game exist of seventeen variable levels made in wonderful themes.
+
+Explaining all the levels Alex has to:
+[oase.map] cross the boring desert with oases and real flying fakirs,
+[berg.map] fall in ravines and beware of the rolling stones coming down from the mountains,
+[grot.map] crawl trough the holes with underground rivers and lakes,
+[stad.map] stop the overpopulation in the enermies capital city and destroy them buildings,
+[blik.map] go trough the terrible canned allegator factory,
+[brug.map] break the ugly enermies bridges in the beautiful allegator valleys,
+[rots.map] climb over and under the rocks and beware not to crunch,
+[boom.map] swing likes Tarzan from tree to tree over the jungle,
+[dras.map] search his way in the swamp and take care not to sink in mud or sand,
+[dool.map] find the secret space ship in the enermies hidden labyrinth,
+[ster.map] meat al the live in space between the asteroids and get the stars from heaven,
+[wolk.map] fly in the air trough the clouds and be carefully not to hit the other flying allegators,
+[pool.map] slide over high flakes of ice and break trough the ice blocks,
+[kolk.map] swim in a turbulent ocean where whirlpools will rotate Alex fast far away,
+[buit.map] get the jewels on Treasure Island witch are stolen by the pirates,
+[dorp.map] walk trough the cannibal's village where they hold their allegator cooking pots,
+[lava.map] and jump over volcano's to the Romantic Island where Alex will meat Lola again.
+
+The levels are good playable for the advance player but sometimes it could be a little bit tricky.
+There should be enough live ups to try the levels over again, however those are difficult to get.
+It is just a game for those who like adventure; and the pleasure is that you can collect plenty points.
+
+If you want to tell me anything over this game you can send me an email (richardkalkman@casema.nl).
+To play this custom map you need the main game Alex the Allegator 4 (http://allegator.sourceforge.net/).
+Romantic Island is designed with the green edition and should play in that one.
+There is also an colored edition, but I don't believe this will looks very well. You may try it out.
+
+Good luck by playing Romantic Island and I hope you enjoy this game.
+
+
+#start#
+oase.map
+berg.map
+grot.map
+stad.map
+blik.map
+brug.map
+rots.map
+boom.map
+dras.map
+dool.map
+ster.map
+wolk.map
+pool.map
+kolk.map
+buit.map
+dorp.map
+lava.map
+#end#

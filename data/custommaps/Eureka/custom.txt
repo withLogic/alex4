@@ -1,0 +1,11 @@
+note: you don't have to collect all stars and cherries and one-ups and hearts, cause you CAN'T!!!!!
+but you can collect some of them....
+hope you have fun!
+
+#start#
+first.map
+second.map
+third.map
+fourth.map
+boss.map
+#end#

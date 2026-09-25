@@ -1,0 +1,19 @@
+Hiya!
+The Reckoning v2 is a seven-level map pack for Alex 4.
+Yeah, yeah - seven levels ain't that much, but at least it's more than five! :P
+Keep in mind that some of these levels require some kind of trick to complete while playing
+- and remember: NEVER, EVER USE AN EGG UNTIL IT'S ABSOLUTELY NECESSARY! ;)
+
+So, have fun!
+
+Ts - [coercion@online.no]
+
+#start#
+map1.map
+map2.map
+map3.map
+map4.map
+map5.map
+map6.map
+map7.map
+#end#

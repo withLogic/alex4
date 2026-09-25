@@ -1,0 +1,24 @@
+This 1st series starts off from the point just after Alex's girlfriend is spirited away by the helicopter and he sets off to find and free her.
+
+It follows a continuing path for Alex and as stated above, as closely as possible can actually be mapped from beginning to end for those so inclined.
+
+I've tried to make the levels reasonably passable and in some levels there is a choice between an easy route and a more difficult one for those wishing to gain maximum points. 
+
+As you progress thru each level you'll find for the most part it gets harder. Remember also that whenever you see the ACME sign its your reminder to clear the level of all creatures before attempting to exit.
+
+You'll see arrows pointing the way in most, if not all levels. Pay attention, they may save your life. Just remember though that as these levels actually map out Alex's world you'll sometimes find that the arrow was either meant for the previous level or the following level. 
+
+I hate playing games where I get almost to the end and then run out of lives trying to get past a particulary hard section so to this end I have placed a FREE life in levels that I felt required it.
+
+Have fun!!!!
+
+
+#start#
+bfh1-1.map
+bfh1-2.map
+bfh1-3.map
+bfh1-4.map
+bfh1-5.map
+bfh1-6.map
+bfh1-7.map
+#end#

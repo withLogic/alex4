@@ -27,6 +27,10 @@
 #include <string.h>
 #include <ctype.h>
 
+#ifdef ALEX4_VITA
+#include <psp2/ctrl.h>
+#endif
+
 #include "timer.h"
 #include "map.h"
 #include "control.h"
@@ -64,29 +68,66 @@
 #define GS_GAME_DIED		8
 #define GS_SCORES			9
 #define GS_EDIT			   10
+#define GS_CUSTOM_MAPS	   11
+#define GS_RELOAD_ASSETS   12
+
+#define ASSET_SET_ORIGINAL 0
+#define ASSET_SET_COLOR    1
+
+#define ORIGINAL_DATA_FILE DATA_DIR "data/data.dat"
+#define COLOR_DATA_FILE    DATA_DIR "data/data_color.dat"
+#define ORIGINAL_A45_FILE  DATA_DIR "data/a45.dat"
+#define COLOR_A45_FILE     DATA_DIR "data/a45_color.dat"
+
+#define MAX_CUSTOM_MAP_PACKS 64
+#ifndef ALEX4_CUSTOM_MAPS_ROOT
+#define ALEX4_CUSTOM_MAPS_ROOT "custommaps"
+#endif
+
+#ifndef ALEX4_CUSTOM_MAP_FILE
+#define ALEX4_CUSTOM_MAP_FILE "custom.txt"
+#endif
 
 int game_status = 0;
+
+static void free_custom_level_files(void);
+static int do_custom_menu(char *map_file, int map_file_size);
 
 char alex4_sav[256] = "./alex4.sav";
 char alex4_hi[256] = "./alex4.hi";
 
-#ifndef WIN32
-char log_txt[256] = "/tmp/log.txt";
-#else
+#ifdef WIN32
 char log_txt[256] = "./log.txt";
+#elif defined(ALEX4_VITA)
+char log_txt[256] = "ux0:data/alex4/log.txt";
+#else
+char log_txt[256] = "/tmp/log.txt";
 #endif
 
 // globalez
 DATAFILE *data = NULL;
 DATAFILE *maps = NULL;
 DATAFILE *sfx_data = NULL;
+static DATAFILE *original_data = NULL;
+static DATAFILE *color_data = NULL;
 BITMAP *tmp_screen; // used for color conversion
 BITMAP *swap_screen;
 PALETTE org_pal;
+PALETTE palette_black;
+PALETTE palette_white;
 Tscroller hscroll;
 Thisc *hisc_table;
 Thisc *hisc_table_space;
 char working_directory[1024];
+char active_map_file[1024] = "";
+
+int color_text_black = 1;
+int color_text_white = 4;
+int color_scroller_text = 3;
+int color_scroller_bg = 2;
+
+static int asset_set = ASSET_SET_ORIGINAL;
+static int init_string_decoded = 0;
 
 // the map
 Tmap *map = NULL;
@@ -131,11 +172,15 @@ SAMPLE *sfx[MAX_SOUNDS] = { NULL, NULL, NULL, NULL,
 
 
 // various
-char scroller_message[] = 
-	"Free Lunch Design      presents      Alex the Allegator 4      "
-	"Guide Alex to the exit of each level      Jump or shoot enemies picking up stars and cherries on the way      "
-	"Use arrows to move Alex, ALT to jump and Left CTRL to shoot, or use a gamepad or joystick      "
-	"Code and GFX by Johan Peitz      Music and SFX by Anders Svensson       ";
+char scroller_message[] =
+	#ifdef ALEX4_VITA
+		"L: ORIGINAL B&W      R: COLOR      "
+	#endif
+		"Free Lunch Design      presents      Alex the Allegator 4      "
+		"Guide Alex to the exit of each level      Jump or shoot enemies picking up stars and cherries on the way      "
+		"Use arrows to move Alex, ALT to jump and Left CTRL to shoot, or use a gamepad or joystick      "
+		"Code and GFX by Johan Peitz      Music and SFX by Anders Svensson      "
+		"Color Edition by Tim Wright (Argh!)       ";
 char init_string[] = "[YhJPJKUSY`0-'\"7 ";
 
 char *level_files[256];
@@ -262,6 +307,109 @@ void garble_string(char *str, int key) {
 	}
 }
 
+int using_color_assets(void) {
+	return asset_set == ASSET_SET_COLOR;
+}
+
+const char *get_shooter_datafile_path(void) {
+	return using_color_assets() ? COLOR_A45_FILE : ORIGINAL_A45_FILE;
+}
+
+static const char *get_main_datafile_path(void) {
+	return using_color_assets() ? COLOR_DATA_FILE : ORIGINAL_DATA_FILE;
+}
+
+static DATAFILE **get_main_datafile_slot(void) {
+	return using_color_assets() ? &color_data : &original_data;
+}
+
+static void configure_asset_palette_colors(void) {
+	int i;
+
+	for (i = 0; i < 256; i++) {
+		palette_black[i].r = palette_black[i].g = palette_black[i].b = 0;
+		palette_white[i].r = palette_white[i].g = palette_white[i].b = 63;
+	}
+
+	if (using_color_assets()) {
+		color_text_black = 76;
+		color_text_white = 79;
+		color_scroller_text = 11;
+		color_scroller_bg = 51;
+	}
+	else {
+		color_text_black = 1;
+		color_text_white = 4;
+		color_scroller_text = 3;
+		color_scroller_bg = 2;
+	}
+}
+
+static void load_asset_selection(void) {
+	asset_set = get_config_int("graphics", "color", 0) ?
+		ASSET_SET_COLOR : ASSET_SET_ORIGINAL;
+
+	if (asset_set == ASSET_SET_COLOR &&
+		(!exists(COLOR_DATA_FILE) || !exists(COLOR_A45_FILE))) {
+		log2file(" color assets missing; reverting to original B&W assets");
+		asset_set = ASSET_SET_ORIGINAL;
+		set_config_int("graphics", "color", 0);
+		flush_config_file();
+	}
+
+	log2file(" asset set: %s", using_color_assets() ? "color" : "original B&W");
+}
+
+static int persist_asset_selection(int requested_set) {
+	if (requested_set == asset_set)
+		return FALSE;
+
+	if (requested_set == ASSET_SET_COLOR &&
+		(!exists(COLOR_DATA_FILE) || !exists(COLOR_A45_FILE))) {
+		log2file(" color asset switch requested, but color datafiles are missing");
+		return FALSE;
+	}
+
+	set_config_int("graphics", "color", requested_set == ASSET_SET_COLOR ? 1 : 0);
+	flush_config_file();
+	log2file(" asset set change requested: %s",
+		requested_set == ASSET_SET_COLOR ? "color" : "original B&W");
+	return TRUE;
+}
+
+#ifdef ALEX4_VITA
+static unsigned int title_previous_buttons = 0;
+
+static void prime_title_asset_buttons(void) {
+	SceCtrlData pad;
+
+	memset(&pad, 0, sizeof(pad));
+	if (sceCtrlPeekBufferPositive(0, &pad, 1) > 0)
+		title_previous_buttons = pad.buttons;
+	else
+		title_previous_buttons = 0;
+}
+
+static int poll_title_asset_request(void) {
+	SceCtrlData pad;
+	unsigned int pressed;
+
+	memset(&pad, 0, sizeof(pad));
+	if (sceCtrlPeekBufferPositive(0, &pad, 1) <= 0)
+		return -1;
+
+	pressed = pad.buttons & ~title_previous_buttons;
+	title_previous_buttons = pad.buttons;
+
+	if (pressed & SCE_CTRL_LTRIGGER)
+		return ASSET_SET_ORIGINAL;
+	if (pressed & SCE_CTRL_RTRIGGER)
+		return ASSET_SET_COLOR;
+
+	return -1;
+}
+#endif
+
 // sets the current map
 void set_map(Tmap *m) {
 	map = m;
@@ -379,6 +527,66 @@ static void start_music(int startorder) {
 	}
 }
 
+static int reload_asset_data(void) {
+	DATAFILE **slot;
+	DATAFILE *new_data;
+	int previous_asset_set = asset_set;
+	int i;
+
+	load_asset_selection();
+	if (asset_set == previous_asset_set)
+		return TRUE;
+
+	slot = get_main_datafile_slot();
+	new_data = *slot;
+
+	if (new_data == NULL) {
+		log2file(" loading replacement data: %s", get_main_datafile_path());
+		packfile_password(init_string);
+		new_data = load_datafile(get_main_datafile_path());
+		packfile_password(NULL);
+
+		if (new_data == NULL) {
+			log2file("  *** failed; keeping previous asset set");
+			asset_set = previous_asset_set;
+			set_config_int("graphics", "color",
+				asset_set == ASSET_SET_COLOR ? 1 : 0);
+			flush_config_file();
+			return FALSE;
+		}
+
+		*slot = new_data;
+	}
+
+	/* Keep Allegro, timers, sound and the current menu music alive. */
+	data = new_data;
+	duh = got_sound ? (DUH *)data[MSC_GAME].dat : NULL;
+
+	((RGB *)data[0].dat)[0].r = 0;
+	((RGB *)data[0].dat)[0].g = 0;
+	((RGB *)data[0].dat)[0].b = 0;
+	fix_gui_colors();
+	configure_asset_palette_colors();
+	set_palette(data[0].dat);
+
+	for (i = 0; i < 256; i++) {
+		org_pal[i].r = ((RGB *)data[0].dat)[i].r;
+		org_pal[i].g = ((RGB *)data[0].dat)[i].g;
+		org_pal[i].b = ((RGB *)data[0].dat)[i].b;
+	}
+
+	init_scroller(&hscroll, data[THE_FONT].dat, scroller_message, 160, 10, TRUE);
+
+	if (map != NULL)
+		map->data = data;
+	for (i = 0; i < MAX_ACTORS; i++)
+		actor[i].data = data;
+
+	log2file(" live asset switch complete: %s",
+		using_color_assets() ? "color" : "original B&W");
+	return TRUE;
+}
+
 
 // delay routine used by the fades
 void fade_rest(int msec, AL_DUH_PLAYER *duh_player) {
@@ -393,9 +601,38 @@ void fade_rest(int msec, AL_DUH_PLAYER *duh_player) {
 	}
 }
 
+static void fade_full_palette(PALETTE pal, int fadein, int delay, AL_DUH_PLAYER *duh_player) {
+	int steps, i;
+	PALETTE temp;
+
+	if (delay < 40)
+		steps = 3;
+	else {
+		steps = 6;
+		delay /= 2;
+	}
+
+	for (i = 1; i <= steps; i++) {
+		if (fadein)
+			fade_interpolate(pal, org_pal, temp, 64 * i / steps, 0, 235);
+		else
+			fade_interpolate(pal, org_pal, temp, 64 * (steps - i) / steps, 0, 235);
+
+		set_palette_range(temp, 0, 253, 1);
+		fade_rest(delay, duh_player != NULL ? duh_player : dp);
+	}
+
+	set_mouse_sprite(NULL);
+}
+
 
 // fades in from white to 4 color palette
 void fade_in_pal(int delay) {
+	if (using_color_assets()) {
+		fade_full_palette(palette_white, TRUE, delay, NULL);
+		return;
+	}
+
 	set_color(1, &org_pal[3]);	
 	fade_rest(delay, dp);
 
@@ -412,6 +649,11 @@ void fade_in_pal(int delay) {
 
 // fades 4 color palette to white
 void fade_out_pal(int delay) {
+	if (using_color_assets()) {
+		fade_full_palette(palette_white, FALSE, delay, NULL);
+		return;
+	}
+
 	set_color(1, &org_pal[2]);	
 	set_color(2, &org_pal[3]);	
 	set_color(3, &org_pal[4]);	
@@ -427,6 +669,11 @@ void fade_out_pal(int delay) {
 
 // fade in from black to 4 colors pal
 void fade_in_pal_black(int delay, AL_DUH_PLAYER *duh_player) {
+	if (using_color_assets()) {
+		fade_full_palette(palette_black, TRUE, delay, duh_player);
+		return;
+	}
+
 	set_color(4, &org_pal[2]);	
 	fade_rest(delay, duh_player);
 
@@ -443,6 +690,11 @@ void fade_in_pal_black(int delay, AL_DUH_PLAYER *duh_player) {
 
 // fades 4 color palette to black
 void fade_out_pal_black(int delay, AL_DUH_PLAYER *duh_player) {
+	if (using_color_assets()) {
+		fade_full_palette(palette_black, FALSE, delay, duh_player);
+		return;
+	}
+
 	set_color(2, &org_pal[1]);	
 	set_color(3, &org_pal[2]);	
 	set_color(4, &org_pal[3]);	
@@ -562,17 +814,17 @@ void blit_to_screen(BITMAP *bmp) {
 void draw_status_bar(BITMAP *bmp, int y) {
 	int i;
 
-	rectfill(bmp, 0, y, 159, y+9, 1);
+	rectfill(bmp, 0, y, 159, y+9, color_text_black);
 	draw_sprite_h_flip(bmp, data[HERO_NORM].dat, 0, y+1); 
-	textprintf(bmp, data[THE_FONT].dat, 9, y+1, 4, " :%d", player.lives);
+	textprintf(bmp, data[THE_FONT].dat, 9, y+1, color_text_white, " :%d", player.lives);
 
 	for(i = 0; i < player.health; i ++)
 		draw_sprite(bmp, data[HEART2].dat, 40 + 10 * i, y-3);
 
 	draw_sprite(bmp, data[EGG].dat, 80, y-5); 
-	textprintf(bmp, data[THE_FONT].dat, 85, y+1, 4, " :%d", player.ammo);
+	textprintf(bmp, data[THE_FONT].dat, 85, y+1, color_text_white, " :%d", player.ammo);
 
-	textprintf_right(bmp, data[THE_FONT].dat, 158, y+1, 4, "%d", player.score);
+	textprintf_right(bmp, data[THE_FONT].dat, 158, y+1, color_text_white, "%d", player.score);
 }
 
 
@@ -621,7 +873,7 @@ void draw_frame(BITMAP *bmp, int _status_bar) {
 	// draw statusbar
 	if (!editing) {
 		if (_status_bar)	draw_status_bar(bmp, 110);
-		else rectfill(bmp, 0, 110, 159, 119, 1);
+		else rectfill(bmp, 0, 110, 159, 119, color_text_black);
 
 	}
 	else { 		/////////////// EDIT stats
@@ -702,6 +954,7 @@ int init_game(const char *map_file) {
 	int i;
 	int w, h, bpp;
 
+	init_ok = 0;
 	init_paths();
 
 	log2file("\nInit routines:");
@@ -709,8 +962,12 @@ int init_game(const char *map_file) {
 	// various allegro things
 	log2file(" initializing allegro");
 	text_mode(-1);
-	garble_string(init_string, 53);
-	set_config_file("alex4.ini");
+	if (!init_string_decoded) {
+		garble_string(init_string, 53);
+		init_string_decoded = 1;
+	}
+	set_config_file(DATA_DIR "alex4.ini");
+	load_asset_selection();
 	set_window_close_button(FALSE);
 	
 	// install timers
@@ -805,15 +1062,16 @@ int init_game(const char *map_file) {
 	dumb_it_max_to_mix = get_config_int("dumb", "dumb_it_max_to_mix", 128);
 
 	// load data
-	log2file(" loading data");
+	log2file(" loading data: %s", get_main_datafile_path());
 	packfile_password(init_string);
-	data = load_datafile("data/data.dat");
+	data = load_datafile(get_main_datafile_path());
 	packfile_password(NULL);
 	if (data == NULL) {
     	log2file("  *** failed");
 		allegro_message("ALEX4:\nFailed to load data.");
 		return FALSE;
 	}
+	*get_main_datafile_slot() = data;
 
 	// load options
 	log2file(" loading options");
@@ -849,9 +1107,10 @@ int init_game(const char *map_file) {
 	((RGB *)data[0].dat)[0].b = 0;
 	fix_gui_colors();
 	set_palette(data[0].dat);
+	configure_asset_palette_colors();
 
 	// show splash screen
-	clear_to_color(swap_screen, 3);
+	clear_to_color(swap_screen, color_scroller_text);
 
 	bmp = data[FLD_LOGO].dat;
 	draw_character(swap_screen, bmp, 80 - bmp->w / 2 + 0, 50 + 1, 1);
@@ -865,7 +1124,7 @@ int init_game(const char *map_file) {
 		log2file(" loading original maps");
 		packfile_password(init_string);
 		num_levels = -1;  // skip end object when counting
-		maps = load_datafile_callback("data/maps.dat", count_maps_callback);
+		maps = load_datafile_callback(DATA_DIR "data/maps.dat", count_maps_callback);
 		packfile_password(NULL);
 		if (maps == NULL) {
 	    	log2file("  *** failed");
@@ -959,9 +1218,9 @@ int init_game(const char *map_file) {
 		if (get_config_int("sound", "use_sound_datafile", 1)) {
 			log2file(" loading sound datafile");
 			packfile_password(init_string);
-			sfx_data = load_datafile("data/sfx_44.dat");
+			sfx_data = load_datafile(DATA_DIR "data/sfx_44.dat");
 			if (sfx_data == NULL) {
-				sfx_data = load_datafile("data/sfx_22.dat");
+				sfx_data = load_datafile(DATA_DIR "data/sfx_22.dat");
 				log2file("  sfx_44.dat not found");
 				s = 0;
 			}
@@ -1063,17 +1322,7 @@ void uninit_game() {
 
 	log2file("\nExit routines:");
 
-	log2file(" unloading datafile");
-	if (data != NULL) unload_datafile(data);
-	
-	log2file(" unloading original maps");
-	if (maps != NULL) unload_datafile(maps);
-
-	log2file(" destroying temporary map");
-	if (map != NULL) destroy_map(map);
-
-	log2file(" freeing level names");
-	for(i = 0; i < num_levels; i ++) free(level_files[i]);
+	stop_music();
 
 	// only save if everything was inited ok!
 	if (init_ok) {
@@ -1097,16 +1346,77 @@ void uninit_game() {
 		}
 	}
 
+	log2file(" destroying temporary map");
+	if (map != NULL) {
+		destroy_map(map);
+		map = NULL;
+	}
+
+	log2file(" freeing level names");
+	for(i = 0; i < 256; i ++) {
+		if (level_files[i] != NULL) {
+			free(level_files[i]);
+			level_files[i] = NULL;
+		}
+	}
+	num_levels = 0;
+
 	if (get_config_int("sound", "use_sound_datafile", 1)) {
 		log2file(" unloading sound data");
-		if (sfx_data != NULL) unload_datafile(sfx_data);
+		if (sfx_data != NULL) {
+			unload_datafile(sfx_data);
+			sfx_data = NULL;
+		}
 	}
 	else {
 		log2file(" freeing sounds");
 		for(i = 0; i < MAX_SOUNDS; i ++) {
-			if (sfx[i] != NULL)	destroy_sample(sfx[i]);
+			if (sfx[i] != NULL)
+				destroy_sample(sfx[i]);
 		}
 	}
+	for (i = 0; i < MAX_SOUNDS; i++)
+		sfx[i] = NULL;
+
+	log2file(" unloading original maps");
+	if (maps != NULL) {
+		unload_datafile(maps);
+		maps = NULL;
+	}
+
+	log2file(" unloading datafiles");
+	if (original_data != NULL) {
+		unload_datafile(original_data);
+		original_data = NULL;
+	}
+	if (color_data != NULL) {
+		unload_datafile(color_data);
+		color_data = NULL;
+	}
+	data = NULL;
+	duh = NULL;
+	sr = NULL;
+
+	if (tmp_screen != NULL) {
+		destroy_bitmap(tmp_screen);
+		tmp_screen = NULL;
+	}
+	if (swap_screen != NULL) {
+		destroy_bitmap(swap_screen);
+		swap_screen = NULL;
+	}
+
+	if (hisc_table != NULL) {
+		destroy_hisc_table(hisc_table);
+		hisc_table = NULL;
+	}
+	if (hisc_table_space != NULL) {
+		destroy_hisc_table(hisc_table_space);
+		hisc_table_space = NULL;
+	}
+
+	got_sound = 0;
+	init_ok = 0;
 
 	log2file(" exiting dumb");
 	dumb_exit();
@@ -1139,11 +1449,11 @@ void init_player(Tplayer *p, Tmap *m) {
 
 // draws text with an outline
 void textout_outline(BITMAP *bmp, const char *txt, int x, int y) {
-	textout(bmp, data[THE_FONT].dat, txt, x+1, y, 1);
-	textout(bmp, data[THE_FONT].dat, txt, x-1, y, 1);
-	textout(bmp, data[THE_FONT].dat, txt, x, y+1, 1);
-	textout(bmp, data[THE_FONT].dat, txt, x, y-1, 1);
-	textout(bmp, data[THE_FONT].dat, txt, x, y, 4);
+	textout(bmp, data[THE_FONT].dat, txt, x+1, y, color_text_black);
+	textout(bmp, data[THE_FONT].dat, txt, x-1, y, color_text_black);
+	textout(bmp, data[THE_FONT].dat, txt, x, y+1, color_text_black);
+	textout(bmp, data[THE_FONT].dat, txt, x, y-1, color_text_black);
+	textout(bmp, data[THE_FONT].dat, txt, x, y, color_text_white);
 }
 
 
@@ -1309,6 +1619,15 @@ void transform_bitmap(BITMAP *bmp, int steps) {
 	}
 }
 
+static void tint_palette(PALETTE tint, int level) {
+	PALETTE temp;
+
+	fade_interpolate(tint, org_pal, temp, level, 0, 255);
+	set_palette_range(temp, 0, color_text_black - 1, 1);
+	set_palette_range(temp, color_text_white + 1, 255, 1);
+	set_mouse_sprite(NULL);
+}
+
 // draws the scoring sequence at end of level
 // used by show_cutscene(..)
 void draw_cutscene(BITMAP *bmp, int org_level, int _level, int _lives, int _stars, int _cherries) {
@@ -1355,7 +1674,10 @@ void show_cutscene(int level) {
 	// create cutscene screene
 	blit(swap_screen, swap2, 0, 0, 0, 0, 160, 120);
 
-	transform_bitmap(swap2, -1);
+	if (using_color_assets())
+		tint_palette(palette_black, 43);
+	else
+		transform_bitmap(swap2, -1);
 
 	draw_cutscene(bmp, level, _level, _lives, _stars, _cherries);
 
@@ -1423,7 +1745,7 @@ void show_scores(int space, Thisc *table) {
 	if (space) {
 		// get space bg
 		packfile_password(init_string);
-		df = load_datafile_object("data/a45.dat", "BG1");
+		df = load_datafile_object(get_shooter_datafile_path(), "BG1");
 		packfile_password(NULL);
 		if (df != NULL)	{
 			bg = df->dat;
@@ -1435,14 +1757,15 @@ void show_scores(int space, Thisc *table) {
 	if (bg == NULL || !space)
 		blit(data[INTRO_BG].dat, swap_screen, 0, 0, 0, 0, 160, 120);
 	else {
-		clear_to_color(swap_screen, 1);
+		clear_to_color(swap_screen, color_text_black);
 		blit(bg, swap_screen, 0, 0, 0, 0, 160, 120);
 	}
 
 
 	textout_outline_center(swap_screen, "High scores", 80, 8);
 	textout_outline_center(swap_screen, "Press any key", 80, 100);
-	draw_hisc_table(table, swap_screen, data[THE_FONT].dat, 10, 30, (space ? 4 : 1), !space);
+	draw_hisc_table(table, swap_screen, data[THE_FONT].dat, 10, 30,
+		(space ? color_text_white : color_text_black), !space);
 
 	blit_to_screen(swap_screen);
 	fade_in_pal(100);
@@ -1469,16 +1792,16 @@ void draw_select_starting_level(BITMAP *bmp, int level, int min, int max) {
 	int xpos = 2;
 
 	blit(data[ALEX_BG].dat, bmp, 0, 0, 0, 0, 160, 112);
-	rectfill(bmp, 0, 112, 160, 120, 2);
+	rectfill(bmp, 0, 112, 160, 120, color_scroller_bg);
 
 	sprintf(buf, "%s %d %s", (level > min ? "<" : " "), level, (level < max ? ">" : " "));
 	clear_bitmap(stuff);
-	textout_centre(stuff, data[THE_FONT].dat, buf, stuff->w/2 + 1, 1, 2);
-	textout_centre(stuff, data[THE_FONT].dat, buf, stuff->w/2, 0, 1);
+	textout_centre(stuff, data[THE_FONT].dat, buf, stuff->w/2 + 1, 1, color_scroller_bg);
+	textout_centre(stuff, data[THE_FONT].dat, buf, stuff->w/2, 0, color_text_black);
 	stretch_sprite(bmp, stuff, 80 - 4*stuff->w/2, 30, 4*stuff->w, 4*stuff->h);
 
-	textout_centre(bmp, data[THE_FONT].dat, "SELECT START LEVEL", 80, 90, 1);
-	textout_centre(bmp, data[THE_FONT].dat, "SELECT START LEVEL", 79, 89, 4);
+	textout_centre(bmp, data[THE_FONT].dat, "SELECT START LEVEL", 80, 90, color_text_black);
+	textout_centre(bmp, data[THE_FONT].dat, "SELECT START LEVEL", 79, 89, color_text_white);
 
 	if (options.one_hundred) {
 		if (game_count & 32 || game_count & 16) draw_sprite(bmp, data[SHIP100].dat, xpos, 2);
@@ -2348,7 +2671,10 @@ int do_pause_menu(BITMAP *bg) {
 	play_sound_id(SMPL_PAUSE);
 
 	// darken screen
-	transform_bitmap(bg, -1);
+	if (using_color_assets())
+		tint_palette(palette_black, 43);
+	else
+		transform_bitmap(bg, -1);
 	blit_to_screen(bg);
 	
 	// show text
@@ -2379,6 +2705,8 @@ int do_pause_menu(BITMAP *bg) {
 	}
 
 	if (got_sound && !editing) al_resume_duh(dp);
+	if (using_color_assets())
+		set_palette(org_pal);
 
 	return done;
 }
@@ -2550,8 +2878,8 @@ void draw_title(BITMAP *bmp, int tick) {
 	textout(bmp, data[THE_FONT].dat, "HIGH SCORES", x, y, 4);
 
 	y += step;
-	textout(bmp, data[THE_FONT].dat, "EDITOR", x+1, y+1, 1);
-	textout(bmp, data[THE_FONT].dat, "EDITOR", x, y, 4);
+	textout(bmp, data[THE_FONT].dat, "MORE MAPS", x+1, y+1, 1);
+	textout(bmp, data[THE_FONT].dat, "MORE MAPS", x, y, 4);
 
 	y += step;
 	textout(bmp, data[THE_FONT].dat, "QUIT", x+1, y+1, 1);
@@ -2686,14 +3014,22 @@ int get_string(BITMAP *bmp, char *string, int max_size, FONT *f, int pos_x, int 
 // lets the player enter a name for highscore use (or what ever)
 void get_player_name(char *name) {
 	blit(data[INTRO_BG].dat, swap_screen, 0, 0, 0, 0, 160, 120);
-	transform_bitmap(swap_screen, -1);
+	if (!using_color_assets())
+		transform_bitmap(swap_screen, -1);
 	textout_outline_center(swap_screen, "Congratulations,", 80, 8);
 	textout_outline_center(swap_screen, "You've got", 80, 19);
 	textout_outline_center(swap_screen, "a high score!", 80, 30);
 	textout_outline_center(swap_screen, "Enter your name:", 80, 55);
 	blit_to_screen(swap_screen);
+	if (using_color_assets()) {
+		fade_in_pal(60);
+		tint_palette(palette_black, 53);
+		fade_rest(40, dp);
+		tint_palette(palette_black, 43);
+		fade_rest(40, dp);
+	}
 	fade_in_pal(100);
-	get_string(swap_screen, name, 10, data[THE_FONT].dat, 50, 80, 4, &ctrl);
+	get_string(swap_screen, name, 10, data[THE_FONT].dat, 50, 80, color_text_white, &ctrl);
 }
 
 
@@ -2710,6 +3046,9 @@ int do_main_menu() {
 	fade_in_pal(100);
 
 	clear_keybuf();
+	#ifdef ALEX4_VITA
+	prime_title_asset_buttons();
+	#endif
 	cycle_count = 0;
 	while(status == GS_OK) {
 
@@ -2723,6 +3062,20 @@ int do_main_menu() {
 
 			poll_control(&ctrl);
 			if (count) count --;
+
+			#ifdef ALEX4_VITA
+			{
+				int requested_set = poll_title_asset_request();
+
+				if (requested_set >= 0 && persist_asset_selection(requested_set)) {
+					play_sound(sfx[SMPL_MENU]);
+					status = GS_RELOAD_ASSETS;
+					count = 10;
+					cycle_count = 0;
+					break;
+				}
+			}
+			#endif
 
 			// is it ok to check for actions?
 			if (!count) {
@@ -2739,11 +3092,19 @@ int do_main_menu() {
 						status = GS_SCORES;
 						play_sound(sfx[SMPL_MENU]);
 					}
+					#ifdef ALEX4_VITA
+					if (menu_choice == 3) {
+						log2file(" custom maps menu selected");
+						status = GS_CUSTOM_MAPS;
+						play_sound(sfx[SMPL_MENU]);
+					}
+					#else
 					if (menu_choice == 3) {
 						log2file(" edit selected");
 						status = GS_EDIT;
 						play_sound(sfx[SMPL_MENU]);
 					}
+					#endif
 					if (menu_choice == 4) {
 						log2file(" quit selected");
 						status = GS_QUIT_MENU;
@@ -2789,6 +3150,9 @@ int do_main_menu() {
 
 			cycle_count --;
 		}
+
+		if (status == GS_RELOAD_ASSETS)
+			break;
 
 		// let other processes play
 		synchronize_us();
@@ -2836,6 +3200,56 @@ int do_main_menu() {
 			log2file(" *** failed");
 		}
 		if (got_sound) start_music(MOD_MENU_SONG);
+	}
+	else if (status == GS_CUSTOM_MAPS) {
+		char map_file[1024];
+
+		stop_music();
+		fix_gui_colors();
+
+		log2file("\nEntering custom maps:");
+		fade_out_pal(100);
+
+		if (do_custom_menu(map_file, sizeof(map_file))) {
+
+			/*
+			* Get rid of any previous custom campaign filenames.
+			*/
+			free_custom_level_files();
+
+			log2file(" loading custom maps");
+			log2file("  reading map file: %s", map_file);
+
+			playing_original_game = FALSE;
+			strncpy(active_map_file, map_file, sizeof(active_map_file) - 1);
+			active_map_file[sizeof(active_map_file) - 1] = '\0';
+
+			load_level_files(map_file);
+
+			log2file("  %d maps loaded", num_levels);
+
+			if (num_levels > 0) {
+				status = GS_PLAY;
+			}
+			else {
+				log2file("  *** no maps were loaded");
+
+				playing_original_game = TRUE;
+
+				if (got_sound)
+					start_music(MOD_MENU_SONG);
+
+				status = GS_OK;
+			}
+		}
+		else {
+			playing_original_game = TRUE;
+
+			if (got_sound)
+				start_music(MOD_MENU_SONG);
+
+			status = GS_OK;
+		}
 	}
 	else if (status == GS_PLAY) {  //// user selected PLAY
 		int level = 0;
@@ -2970,7 +3384,7 @@ int do_main_menu() {
 				else {
 					show_custom_ending();
 				}
-				clear_to_color(swap_screen, 4);
+				clear_to_color(swap_screen, color_text_white);
 				blit_to_screen(swap_screen);
 			}
 
@@ -3017,14 +3431,24 @@ int do_main_menu() {
 		fade_out_pal(100);
 		// show bye bye screen
 		blit(data[INTRO_BG].dat, swap_screen, 0, 0, 0, 0, 160, 120);
-		transform_bitmap(swap_screen, -1);
+		if (!using_color_assets())
+			transform_bitmap(swap_screen, -1);
 		textout_outline_center(swap_screen, "Thanks for playing!", 80, 20);
 		textout_outline_center(swap_screen, "Design, Code, GFX:", 80, 48);
 		textout_outline_center(swap_screen, "Johan Peitz", 80, 60);
 		textout_outline_center(swap_screen, "MUSIC, SFX:", 80, 78);
 		textout_outline_center(swap_screen, "Anders Svensson", 80, 90);
 		blit_to_screen(swap_screen);
-		fade_in_pal(100);
+		if (using_color_assets()) {
+			fade_in_pal(60);
+			tint_palette(palette_black, 53);
+			fade_rest(40, dp);
+			tint_palette(palette_black, 43);
+			fade_rest(40, dp);
+		}
+		else {
+			fade_in_pal(100);
+		}
 		cycle_count = 0;
 		while(!key[KEY_ESC] && cycle_count < 200)
 			synchronize_us();
@@ -3035,13 +3459,465 @@ int do_main_menu() {
 	return status;
 }
 
+static void free_custom_level_files(void) {
+    int i;
+    int max_files = sizeof(level_files) / sizeof(level_files[0]);
+
+    for (i = 0; i < max_files; i++) {
+        if (level_files[i] != NULL) {
+            free(level_files[i]);
+            level_files[i] = NULL;
+        }
+    }
+}
+
+static int do_custom_menu(char *map_file, int map_file_size) {
+    static char map_packs[MAX_CUSTOM_MAP_PACKS][256];
+
+    struct al_ffblk info;
+
+    char search_path[1024];
+    char pack_path[1024];
+
+    int num_packs = 0;
+    int selected = 0;
+    int first_visible = 0;
+
+    int count = 0;
+    int tick = 0;
+
+    int i;
+    int j;
+
+    const int visible_rows = 6;
+    const int first_y = 30;
+    const int row_height = 12;
+
+    if (map_file == NULL || map_file_size <= 0)
+        return FALSE;
+
+    map_file[0] = '\0';
+
+    log2file("\nRunning custom maps menu:");
+    log2file(" scanning <%s>", ALEX4_CUSTOM_MAPS_ROOT);
+
+    /*
+     * Enumerate only the root map-pack directory.
+     *
+     * al_findfirst() returns attributes with the same directory
+     * enumeration operation on Vita, so this does not require
+     * probing the contents of each directory.
+     */
+    append_filename(search_path,
+                    ALEX4_CUSTOM_MAPS_ROOT,
+                    "*",
+                    sizeof(search_path));
+
+    if (al_findfirst(search_path, &info, FA_ALL) == 0) {
+        do {
+            /*
+             * We only care about directories.
+             */
+            if (!(info.attrib & FA_DIREC))
+                continue;
+
+            /*
+             * Ignore directory navigation entries.
+             */
+            if (!strcmp(info.name, ".") ||
+                !strcmp(info.name, ".."))
+                continue;
+
+            if (num_packs >= MAX_CUSTOM_MAP_PACKS)
+                break;
+
+            strncpy(map_packs[num_packs],
+                    info.name,
+                    sizeof(map_packs[num_packs]) - 1);
+
+            map_packs[num_packs]
+                     [sizeof(map_packs[num_packs]) - 1] = '\0';
+
+            log2file("  map pack found: <%s>",
+                     map_packs[num_packs]);
+
+            num_packs++;
+
+        } while (al_findnext(&info) == 0);
+
+        al_findclose(&info);
+    }
+
+    log2file(" found %d custom map packs", num_packs);
 
 
+    /*
+     * Sort the directory names alphabetically.
+     *
+     * Do this in memory so there is no additional filesystem I/O.
+     */
+    for (i = 1; i < num_packs; i++) {
+        char temp[256];
+
+        strcpy(temp, map_packs[i]);
+
+        j = i;
+
+        while (j > 0 &&
+               stricmp(map_packs[j - 1], temp) > 0) {
+
+            strcpy(map_packs[j],
+                   map_packs[j - 1]);
+
+            j--;
+        }
+
+        strcpy(map_packs[j], temp);
+    }
+
+
+    /*
+     * Draw first frame before fading in.
+     */
+    blit(data[ALEX_BG].dat,
+         swap_screen,
+         0, 0,
+         0, 0,
+         160, 112);
+
+    rectfill(swap_screen,
+             0, 112,
+             160, 120,
+             2);
+
+    textout_outline_center(swap_screen,
+                           "MORE MAPS",
+                           80,
+                           8);
+
+    if (num_packs == 0) {
+        textout_outline_center(swap_screen,
+                               "NO MAP PACKS FOUND",
+                               80,
+                               52);
+    }
+    else {
+        int y = first_y;
+
+        for (i = 0;
+             i < num_packs && i < visible_rows;
+             i++) {
+
+            char display_name[24];
+
+            strncpy(display_name,
+                    map_packs[i],
+                    sizeof(display_name) - 1);
+
+            display_name[sizeof(display_name) - 1] = '\0';
+
+            if (strlen(map_packs[i]) >=
+                sizeof(display_name)) {
+
+                display_name[20] = '.';
+                display_name[21] = '.';
+                display_name[22] = '.';
+                display_name[23] = '\0';
+            }
+
+            if (i == selected) {
+					draw_sprite(
+						swap_screen,
+						data[POINTER].dat,
+						16 + fixtoi(3 * fcos(itofix(tick << 2))),
+						y - 2);
+            }
+
+			/* shadow */
+			textout(swap_screen,
+					data[THE_FONT].dat,
+					display_name,
+					39,
+					y + 1,
+					1);
+
+			/* foreground */
+			textout(swap_screen,
+					data[THE_FONT].dat,
+					display_name,
+					38,
+					y,
+					4);
+
+            y += row_height;
+        }
+    }
+
+    blit_to_screen(swap_screen);
+    fade_in_pal(100);
+
+
+    clear_keybuf();
+    cycle_count = 0;
+
+
+    /*
+     * Main custom-map menu loop.
+     */
+    while (TRUE) {
+
+        while (cycle_count > 0) {
+            logic_count++;
+            tick++;
+
+            scroll_scroller(&hscroll, -1);
+
+            if (!scroller_is_visible(&hscroll))
+                restart_scroller(&hscroll);
+
+            poll_control(&ctrl);
+
+            if (count)
+                count--;
+
+            if (!count) {
+
+                /*
+                 * Back out.
+                 *
+                 * On Vita KEY_ESC is currently mapped to Select.
+                 * Other ports retain normal Allegro keyboard behavior.
+                 */
+                if (key[KEY_ESC]) {
+                    log2file(" custom map selection cancelled");
+
+                    play_sound(sfx[SMPL_MENU]);
+
+                    fade_out_pal(100);
+
+                    return FALSE;
+                }
+
+
+                /*
+                 * Select current pack.
+                 */
+                if (num_packs > 0 &&
+                    (key[KEY_SPACE] ||
+                     key[KEY_ENTER] ||
+                     is_fire(&ctrl) ||
+                     is_jump(&ctrl))) {
+
+                    /*
+                     * Build:
+                     *
+                     * <root>/<selected pack>/custom.txt
+                     *
+                     * Do not test the file here. The normal Alex4
+                     * custom-map loader will validate it after the
+                     * selection has been made.
+                     */
+                    append_filename(pack_path,
+                                    ALEX4_CUSTOM_MAPS_ROOT,
+                                    map_packs[selected],
+                                    sizeof(pack_path));
+
+                    append_filename(map_file,
+                                    pack_path,
+                                    ALEX4_CUSTOM_MAP_FILE,
+                                    map_file_size);
+
+                    log2file(" custom map pack selected: <%s>",
+                             map_packs[selected]);
+
+                    log2file(" custom map list: <%s>",
+                             map_file);
+
+                    play_sound(sfx[SMPL_MENU]);
+
+                    fade_out_pal(100);
+
+                    return TRUE;
+                }
+
+
+                /*
+                 * Previous item.
+                 */
+                if (num_packs > 0 &&
+                    (key[KEY_UP] ||
+                     is_up(&ctrl))) {
+
+                    selected--;
+
+                    if (selected < 0)
+                        selected = num_packs - 1;
+
+                    play_sound(sfx[SMPL_MENU]);
+
+                    count = 10;
+                }
+
+
+                /*
+                 * Next item.
+                 */
+                if (num_packs > 0 &&
+                    (key[KEY_DOWN] ||
+                     is_down(&ctrl))) {
+
+                    selected++;
+
+                    if (selected >= num_packs)
+                        selected = 0;
+
+                    play_sound(sfx[SMPL_MENU]);
+
+                    count = 10;
+                }
+            }
+
+
+            /*
+             * Release debounce.
+             */
+            if (!is_any(&ctrl) &&
+                !key[KEY_UP] &&
+                !key[KEY_ESC] &&
+                !key[KEY_DOWN] &&
+                !key[KEY_SPACE] &&
+                !key[KEY_ENTER]) {
+
+                count = 0;
+            }
+
+            cycle_count--;
+        }
+
+
+        synchronize_us();
+
+
+        /*
+         * Work out which portion of the list should be visible.
+         */
+        if (selected < first_visible)
+            first_visible = selected;
+
+        if (selected >= first_visible + visible_rows)
+            first_visible =
+                selected - visible_rows + 1;
+
+        if (first_visible < 0)
+            first_visible = 0;
+
+
+        /*
+         * Draw menu.
+         */
+        frame_count++;
+
+        blit(data[ALEX_BG].dat,
+             swap_screen,
+             0, 0,
+             0, 0,
+             160, 112);
+
+        rectfill(swap_screen,
+                 0, 112,
+                 160, 120,
+                 2);
+
+        textout_outline_center(swap_screen,
+                               "MORE MAPS",
+                               80,
+                               8);
+
+
+        if (num_packs == 0) {
+
+            textout_outline_center(swap_screen,
+                                   "NO MAP PACKS FOUND",
+                                   80,
+                                   52);
+        }
+        else {
+            int y = first_y;
+            int last =
+                first_visible + visible_rows;
+
+            if (last > num_packs)
+                last = num_packs;
+
+            for (i = first_visible;
+                 i < last;
+                 i++) {
+
+                char display_name[24];
+
+                strncpy(display_name,
+                        map_packs[i],
+                        sizeof(display_name) - 1);
+
+                display_name[
+                    sizeof(display_name) - 1
+                ] = '\0';
+
+                /*
+                 * Keep very long directory names from running
+                 * off the 160-pixel game screen.
+                 */
+                if (strlen(map_packs[i]) >=
+                    sizeof(display_name)) {
+
+                    display_name[20] = '.';
+                    display_name[21] = '.';
+                    display_name[22] = '.';
+                    display_name[23] = '\0';
+                }
+
+                if (i == selected) {
+					draw_sprite(
+						swap_screen,
+						data[POINTER].dat,
+						16 + fixtoi(3 * fcos(itofix(tick << 2))),
+						y - 2);
+                }
+
+				/* shadow */
+				textout(swap_screen,
+						data[THE_FONT].dat,
+						display_name,
+						39,
+						y + 1,
+						1);
+
+				/* foreground */
+				textout(swap_screen,
+						data[THE_FONT].dat,
+						display_name,
+						38,
+						y,
+						4);
+
+                y += row_height;
+            }
+        }
+
+        draw_scroller(&hscroll,
+                      swap_screen,
+                      0,
+                      110);
+
+        blit_to_screen(swap_screen);
+    }
+}
 
 // main
 int main(int argc, char **argv) {   
 	FILE *fp;
 	int i;
+	int menu_status = GS_OK;
 	char full_path[1024];
 
 	// init allegro
@@ -3069,11 +3945,17 @@ int main(int argc, char **argv) {
 
 	// test wether to play real game
 	// or custom levels
-	if (argc == 1) playing_original_game = TRUE;
-	else playing_original_game = FALSE;
+	if (argc == 1) {
+		playing_original_game = TRUE;
+	}
+	else {
+		playing_original_game = FALSE;
+		strncpy(active_map_file, argv[1], sizeof(active_map_file) - 1);
+		active_map_file[sizeof(active_map_file) - 1] = '\0';
+	}
 
 	// init game
-	if (init_game((playing_original_game ? "maps from datafile please" : argv[1]))) {
+	if (init_game((playing_original_game ? "maps from datafile please" : active_map_file))) {
 		if (playing_original_game) {
 			start_music(MOD_INTRO_SONG);
 			if (run_script((char *)data[SCR_INTRO].dat, data) < 0) {
@@ -3082,7 +3964,20 @@ int main(int argc, char **argv) {
 			stop_music();
 		}
 		if (got_sound) start_music(MOD_MENU_SONG);
-		while(do_main_menu() != GS_QUIT_MENU);
+
+		do {
+			menu_status = do_main_menu();
+
+			if (menu_status == GS_RELOAD_ASSETS) {
+				log2file(" switching live asset set");
+				fade_out_pal(100);
+
+				if (!reload_asset_data()) {
+					log2file("*** live asset switch failed!");
+					allegro_message("ALEX4:\nFailed to reload the selected graphics set.");
+				}
+			}
+		} while(menu_status != GS_QUIT_MENU);
 	}
 	else {
 		log2file("*** init failed!");
@@ -3091,7 +3986,6 @@ int main(int argc, char **argv) {
 
 	// tidy up
 	uninit_game();
-	allegro_exit();
 	log2file("\nDone...\n");
 
 	return 0;

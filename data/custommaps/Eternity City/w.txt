@@ -1,0 +1,3 @@
+#start#
+boss.MAP
+#end#
